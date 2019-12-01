@@ -126,6 +126,17 @@ ledger.balance({ exchange: '£' })
   });
 ```
 
+### Payees
+
+Lists all unique payees in journal. It returns a readable object `stream`.
+
+```js
+ledger.payees()
+  .on('data', function(payee) {
+    // payee is the name of an unique payee (e.g. 'Acme Mortgage')
+  });
+```
+
 ### Print
 
 The print command formats the full list of transactions, ordered by date, using the same format as they would appear in a Ledger data file. It returns a readable stream.
@@ -182,6 +193,17 @@ ledger.stats(function(err, stats) {
 
   // stats is a map (e.g. stats['Unique accounts'] = 13)
 });
+```
+
+### Tags
+
+Lists all unique tags in journal. It returns a readable object `stream`.
+
+```js
+ledger.tags()
+  .on('data', function(tag) {
+    // tag is the name of an unique tag (e.g. 'nobudget')
+  });
 ```
 
 ### Version
