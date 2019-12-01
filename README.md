@@ -74,11 +74,41 @@ ledger.balance()
   .on('data', function(entry) {
     // JSON object for each entry
     entry = {
-      total: {
-        currency: '£',
-        amount: 1000,
+      total: [{
+        commodity: '£',
+        quantity: 1000,
         formatted: '£1,000.00'
-      },
+      }, {
+        commodity: 'USD',
+        quantity: 500,
+        formatted: '500 USD'
+      }],
+      account: {
+        fullname: 'Assets:Checking',
+        shortname: 'Assets:Checking',
+        depth: 2,
+      }
+    };
+  })
+  .once('end', function(){
+    // completed
+  })
+  .once('error', function(error) {
+    // error
+  });
+```
+The balance command will return the balances in the native commodity.  If conversion to a specific commodity is desired, pass option { `exchange` : `commodity` } to the `balance` command.  It will use the latest market exchange rate defined within the ledger document.
+
+```js
+ledger.balance({ exchange: '£' })
+  .on('data', function(entry) {
+    // JSON object for each entry
+    entry = {
+      total: [{
+        commodity: '£',
+        quantity: 2000,
+        formatted: '£2,000.00'
+      }],
       account: {
         fullname: 'Assets:Checking',
         shortname: 'Assets:Checking',
@@ -114,14 +144,18 @@ ledger.register()
   .on('data', function(entry) {
     // JSON object for each entry
     entry = {
-      date: new Date(2014, 1, 1),
-      cleared: true,
-      pending: true,
+      code: '',
       payee: 'Salary',
       postings: [{
-        commodity: {
-          currency: '£',
-          amount: 1000,
+        begLine: 1,
+        endLine: 1,
+        date: new Date(2014, 1, 1),
+        effectiveDate: new Date(2014,1,2),
+        cleared: true,
+        pending: true,
+        amount: {
+          commodity: '£',
+          quantity: 1000,
           formatted: '£1,000.00'
         },
         account: 'Assets:Checking'
