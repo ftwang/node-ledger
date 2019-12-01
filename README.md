@@ -149,8 +149,8 @@ ledger.register()
       postings: [{
         begLine: 1,
         endLine: 1,
-        date: new Date(2014, 1, 1),
-        effectiveDate: new Date(2014,1,2),
+        date: new Date(Date.UTC(2014, 1, 1)),
+        effectiveDate: new Date(Date.UTC(2014,1,2)),
         cleared: true,
         pending: true,
         amount: {
