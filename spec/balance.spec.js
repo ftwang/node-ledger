@@ -221,4 +221,78 @@ describe('Balance', function() {
       });
     });
   });
+
+  describe('empty balance', function() {
+    var ledger, balances;
+    
+    beforeEach(function(done) {
+      ledger = new Ledger({
+        file: 'spec/data/empty-account.dat',
+        binary: ledgerBinary,
+        debug: false
+      });
+      balances = [];
+
+      ledger.balance({ empty: true })
+        .on('data', function(entry) {
+          balances.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .on('error', function(error) {
+          spec.fail(error);
+          done();
+        });
+    });
+
+    it('should return balance for three accounts', function() {
+      expect(balances.length).to.equal(3);
+    });
+
+    it('should parse first balance', function() {
+      expect(balances[0]).to.eql({
+        total: [{
+          commodity: '',
+          quantity: 0,
+          formatted: '0'
+        }],
+        account: {
+          fullname: 'Assets:Checking',
+          shortname: 'Assets:Checking',
+          depth: 2
+        }
+      });
+    });
+
+    it('should parse second balance', function() {
+      expect(balances[1]).to.eql({
+        total: [{
+          commodity: '£',
+          quantity: -1000,
+          formatted: '£-1,000.00'
+        }],
+        account: {
+          fullname: 'Income:Salary',
+          shortname: 'Income:Salary',
+          depth: 2
+        }
+      });
+    });
+
+    it('should parse third balance', function() {
+      expect(balances[2]).to.eql({
+        total: [{
+          commodity: '£',
+          quantity: 1000,
+          formatted: '£1,000.00'
+        }],
+        account: {
+          fullname: 'Toys',
+          shortname: 'Toys',
+          depth: 1
+        }
+      });
+    });
+  });
 });

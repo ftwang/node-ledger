@@ -6,8 +6,6 @@ API for the Ledger command-line interface ([ledger-cli.org](http://ledger-cli.or
 
 MIT License
 
-[![Build Status](https://travis-ci.org/slashdotdash/node-ledger.svg?branch=master)](https://travis-ci.org/slashdotdash/node-ledger)
-
 ## Dependencies
 
   * [Ledger 3](http://ledger-cli.org/)
@@ -45,7 +43,7 @@ var ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
 
 ### Available commands
 
-There are five available Ledger commands.
+There are eight available Ledger commands.
 
 * `accounts` - Lists all accounts for postings.
 * `balance` - Reports the current balance of all accounts.
@@ -72,7 +70,8 @@ ledger.accounts()
 The balance command reports the current balance of all accounts. It returns a readable object `stream`.
 
 ```js
-ledger.balance()
+options = {};
+ledger.balance(options)
   .on('data', function(entry) {
     // JSON object for each entry
     entry = {
@@ -99,10 +98,51 @@ ledger.balance()
     // error
   });
 ```
+
+#### Option --cleared
+Calculate account balances for cleared postings.
+
+#### Option --current
+Set end date to today
+
+#### Option --effective
+Use effective date instead of date.
+
+#### Option --empty
+Include accounts that have empty balances
+
+```js
+options = { empty: true };
+ledger.balance(options)
+  .on('data', function(entry) {
+    // JSON object for each entry
+    entry = {
+      total: [{
+        commodity: '',
+        quantity: 0,
+        formatted: '0'
+      }],
+      account: {
+        fullname: 'Assets:Checking',
+        shortname: 'Assets:Checking',
+        depth: 2,
+      }
+    };
+  })
+  .once('end', function(){
+    // completed
+  })
+  .once('error', function(error) {
+    // error
+  });
+```
+
+#### Option --exchange
 The balance command will return the balances in the native commodity.  If conversion to a specific commodity is desired, pass option { `exchange` : `commodity` } to the `balance` command.  It will use the latest market exchange rate defined within the ledger document.
 
 ```js
-ledger.balance({ exchange: '£' })
+options = { exchange: '£' };
+ledger.balance(options)
   .on('data', function(entry) {
     // JSON object for each entry
     entry = {
@@ -125,6 +165,12 @@ ledger.balance({ exchange: '£' })
     // error
   });
 ```
+
+#### Option --pending
+Calculate account balances for pending postings.
+
+#### Option --uncleared
+Calculate account balances for uncleared postings.
 
 ### Payees
 
