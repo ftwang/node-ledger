@@ -19,7 +19,7 @@ describe('Tags', function() {
       ledger = new Ledger({
         file: 'spec/data/drewr.dat',
         binary: ledgerBinary,
-        debug: true
+        debug: false
       });
       entries = [];
       

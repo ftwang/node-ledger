@@ -49,7 +49,7 @@ There are eight available Ledger commands.
 * `balance` - Reports the current balance of all accounts.
 * `payees` - Lists all unique payees in the journal.
 * `print` - Prints out the full transactions, sorted by date, using the same format as they would appear in a Ledger data file.
-* `register` - Displays all the postings occurring in a single account.\
+* `register` - Displays all the postings occurring in a single account.
 * `tags` - Lists all unique tags in the journal.
 * `stats` - Retrieves statistics, like number of unique accounts.
 * `version` - Gets the currently installed Ledger version number.
@@ -150,6 +150,51 @@ ledger.balance(options)
         commodity: '£',
         quantity: 2000,
         formatted: '£2,000.00'
+      }],
+      account: {
+        fullname: 'Assets:Checking',
+        shortname: 'Assets:Checking',
+        depth: 2,
+      }
+    };
+  })
+  .once('end', function(){
+    // completed
+  })
+  .once('error', function(error) {
+    // error
+  });
+```
+
+#### Option --lots
+When a transaction occurs that exchanges one commodity for another, Ledger records that commodity price not only within its internal price database, but also attached to the commodity itself.  The lot price indicates that the commodity was transferred through an exchange.  It also identifies which commodities you purchased on that prior date.
+
+```js
+options = { empty: true };
+ledger.balance(options)
+  .on('data', function(entry) {
+    // JSON object for each entry
+    entry = {
+      total: [{
+        commodity: 'USD',
+        quantity: 100,
+        formatted: '100 USD'
+        lot: {
+          commodity: '£',
+          quantity: 0.5,
+          date: new Date(Date.UTC(2013,4,1)),
+          formatted: '£0.5'
+        }
+      }, {
+        commodity: 'USD',
+        quantity: 1000,
+        formatted: '1,000 USD'
+        lot: {
+          commodity: '£',
+          quantity: 0.51,
+          date: new Date(Date.UTC(2013,5,1)),
+          formatted: '£0.51'
+        }
       }],
       account: {
         fullname: 'Assets:Checking',

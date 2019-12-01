@@ -1,11 +1,11 @@
 {
   "name": "ledger-cli",
-  "homepage": "https://github.com/slashdotdash/node-ledger",
-  "version": "0.3.0",
+  "homepage": "https://github.com/ftwang/node-ledger",
+  "version": "0.4.0",
   "description": "API for the ledger command-line interface (ledger-cli.org).",
   "repository": {
     "type": "git",
-    "url": "git://github.com/slashdotdash/node-ledger.git"
+    "url": "git://github.com/ftwang/node-ledger.git"
   },
   "keywords": [
     "ledger",
@@ -13,8 +13,8 @@
     "finance"
   ],
   "author": {
-    "name": "Ben Smith",
-    "email": "ben@10consulting.com"
+    "name": "Frank Wang",
+    "email": "ftwang@gmail.com"
   },
   "license": "MIT",
   "main": "lib/ledger.js",
