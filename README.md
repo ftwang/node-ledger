@@ -49,8 +49,10 @@ There are five available Ledger commands.
 
 * `accounts` - Lists all accounts for postings.
 * `balance` - Reports the current balance of all accounts.
+* `payees` - Lists all unique payees in the journal.
 * `print` - Prints out the full transactions, sorted by date, using the same format as they would appear in a Ledger data file.
-* `register` - Displays all the postings occurring in a single account.
+* `register` - Displays all the postings occurring in a single account.\
+* `tags` - Lists all unique tags in the journal.
 * `stats` - Retrieves statistics, like number of unique accounts.
 * `version` - Gets the currently installed Ledger version number.
 
