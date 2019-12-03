@@ -41,6 +41,13 @@ You must provide the path to the Ledger journal file via the  `file` option
 var ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
 ```
 
+Or you can pass the content of the Ledger journal file via the `string` option
+
+```js
+var dat = fs.readFileSync('path/to/ledger/journal/file.dat', 'utf8');
+var ledger = new Ledger({ string: dat });
+```
+
 ### Available commands
 
 There are eight available Ledger commands.
