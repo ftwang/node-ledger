@@ -170,7 +170,7 @@ ledger.balance(options)
 When a transaction occurs that exchanges one commodity for another, Ledger records that commodity price not only within its internal price database, but also attached to the commodity itself.  The lot price indicates that the commodity was transferred through an exchange.  It also identifies which commodities you purchased on that prior date.
 
 ```js
-options = { empty: true };
+options = { lots: true };
 ledger.balance(options)
   .on('data', function(entry) {
     // JSON object for each entry

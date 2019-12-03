@@ -229,7 +229,7 @@ describe('Balance', function() {
       ledger = new Ledger({
         file: 'spec/data/foreign-currency-multiple.dat',
         binary: ledgerBinary,
-        debug: true
+        debug: false
       });
       balances = [];
 
