@@ -17,7 +17,6 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/single-transaction.dat',
-        binary: ledgerBinary,
         debug: false
       });
       balances = [];
@@ -76,7 +75,6 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/foreign-currency-multiple.dat',
-        binary: ledgerBinary,
         debug: false
       });
       balances = [];
@@ -154,7 +152,6 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/foreign-currency-multiple.dat',
-        binary: ledgerBinary,
         debug: false
       });
       balances = [];
@@ -228,7 +225,6 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/foreign-currency-multiple.dat',
-        binary: ledgerBinary,
         debug: false
       });
       balances = [];
@@ -312,7 +308,6 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/empty-account.dat',
-        binary: ledgerBinary,
         debug: false
       });
       balances = [];

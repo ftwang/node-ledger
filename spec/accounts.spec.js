@@ -17,7 +17,6 @@ describe('Accounts', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/single-transaction.dat',
-        binary: ledgerBinary
       });
       accounts = [];
 

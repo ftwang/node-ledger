@@ -18,7 +18,6 @@ describe('Payees', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/drewr.dat',
-        binary: ledgerBinary,
         debug: false
       });
       entries = [];

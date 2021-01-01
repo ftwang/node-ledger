@@ -17,7 +17,6 @@ describe('Error', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/non-existant.dat',
-        binary: ledgerBinary,
         debug: false
       });
       done();
