@@ -18,7 +18,6 @@ describe('Register', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/single-transaction.dat',
-        binary: ledgerBinary,
         debug: false
       });
       entries = [];
@@ -89,7 +88,6 @@ describe('Register', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/drewr.dat',
-        binary: ledgerBinary
       });
       entries = [];
 
@@ -132,7 +130,6 @@ describe('Register', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/quoted-transaction.dat',
-        binary: ledgerBinary
       });
       entries = [];
       
@@ -160,7 +157,6 @@ describe('Register', function() {
     beforeEach(function(done) {
       ledger = new Ledger({
         file: 'spec/data/foreign-currency-transaction.dat',
-        binary: ledgerBinary
       });
       entries = [];
 
