@@ -6,9 +6,7 @@ describe('Ledger', function() {
   var ledger, spec;
   
   beforeEach(function() {
-    ledger = new Ledger({
-      binary: process.env.LEDGER_BIN || '/usr/local/bin/ledger'
-    });
+    ledger = new Ledger({});
     spec = this;
   });
   

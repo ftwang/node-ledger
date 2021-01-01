@@ -20,7 +20,6 @@ describe('Stdin', function() {
 
       ledger = new Ledger({
         string: dat,
-        binary: ledgerBinary
       });
       accounts = [];
 
