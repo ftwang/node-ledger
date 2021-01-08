@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       options: {
-        esversion: 6,
+        esversion: 9,
         curly: true,
         eqeqeq: true,
         immed: true,

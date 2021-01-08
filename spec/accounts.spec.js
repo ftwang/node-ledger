@@ -11,26 +11,23 @@ describe('Accounts', function() {
     ledgerBinary = process.env.LEDGER_BIN || '/usr/local/bin/ledger';
   });
   
-  describe('single transaction, multiple accounts', function() {
+  describe('single transaction, multiple accounts', async function() {
     var ledger, accounts;
     
-    beforeEach(function(done) {
+    beforeEach(async () => {
       ledger = new Ledger({
         file: 'spec/data/single-transaction.dat',
       });
       accounts = [];
 
-      ledger.accounts()
-        .on('data', function(account) {
+      try {
+        for await (var account of ledger.accounts()) {
           accounts.push(account);
-        })
-        .once('error', function(error) {
-          spec.fail(error);
-          done();
-        })
-        .once('end', function(){
-          done();
-        });
+        }
+      } catch (error) {
+        spec.fail(error);
+      }
+      
     });
 
     it('should return two accounts', function() {
